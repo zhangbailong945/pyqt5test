@@ -1,0 +1,31 @@
+#git pull和push 忽略的文件和文件夹如下
+
+# 编译字节码文件 / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C 扩展
+*.so
+
+#sqlite数据库
+db.sqlite3
+
+#自动化部署
+fabfile.py
+
+#项目的部署文档
+*.docx
+
+#服务器生成搜索文件夹
+whoosh_index/
+
+#服务器生成的静态文件夹
+statics/
+
+#vscode 配置文件夹
+.vscode/
+
+
+
+

@@ -1,0 +1,40 @@
+<html>
+        <head>
+        <title>PyQt5嵌入html5</title>
+        <script type="text/javascript" src="qwebchannel.js"></script>
+        <script type="text/javascript">
+        function completeAndReturnName(){
+            var fname=document.getElementById('fname').value;
+            var lname=document.getElementById('lname').value;
+            var full=fname+' '+lname;
+            document.getElementById('fullname').value=full;
+            document.getElementById('submit-btn').style.display='block';
+            return full;
+
+        }
+
+        document.addEventListener("DOMCntentLoaded",function(){
+            new QWebChannel(qt.webChannelTransport,function(channel){
+                window.bridge=channel.objects.bridge;
+                alert('bridge='+bridge+'\n从pyqt传来的参数='+window.bridge.strValue);
+            });
+        });
+
+        function onShowMessageBox(){
+            if(window.bridge){
+                var fname=document.getElementById('fname').value;
+                window.bridge.strValue=fname;
+            }
+        }
+        </script>
+        </head>
+        <body>
+        <h1>Hello PyQt5!</h1>
+        <form>
+        <label for='fname'>Frist Name</label>
+        <input type='text' name='fname' id='fname' />
+        <input type='button'  value='传递参数' onclick="onShowMessageBox();" />
+        <input type='reset'  value='重置' />
+        </form>
+        </body>
+        </html>
