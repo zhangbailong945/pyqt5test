@@ -1,0 +1,3 @@
+#myWidget{
+    border-image:url(d:/PyQt5Projects/pyqt5test/images/python.jpg)
+}
