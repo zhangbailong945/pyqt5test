@@ -5,6 +5,9 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtSql import QSqlDatabase,QSqlQuery
 
 
+## SQlite在PyQt5中的使用
+# 
+
 class MyWidget(QWidget):
 
     def __init__(self,parent=None):
