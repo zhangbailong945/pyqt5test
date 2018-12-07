@@ -19,6 +19,12 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:reflect, x1:0.00568182, y1:0.051, x2:0, y2:0.563, stop:0 rgba(188, 217, 235, 255), stop:1 rgba(255, 255, 255, 255));</string>
+  </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <item>
     <widget class="QLabel" name="novelname_label">
@@ -62,7 +68,7 @@
     </spacer>
    </item>
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="other_label">
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;其他&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
