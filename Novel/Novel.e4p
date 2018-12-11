@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project Novel -->
-<!-- Saved: 2018-12-06, 17:08:17 -->
+<!-- Saved: 2018-12-11, 12:43:22 -->
 <!-- Copyright (C) 2018 Loach, 1207549344@qq.com -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -13,6 +13,8 @@
   <Email>1207549344@qq.com</Email>
   <Eol index="0"/>
   <Sources>
+    <Source>Ui_StatusBarWidget.py</Source>
+    <Source>Ui_TitleBarWidget.py</Source>
     <Source>__init__.py</Source>
   </Sources>
   <Forms>
