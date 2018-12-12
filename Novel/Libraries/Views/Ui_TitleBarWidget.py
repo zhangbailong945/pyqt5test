@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from images import images
 
 class Ui_TitleBarWidget(object):
     def setupUi(self, TitleBarWidget):
@@ -242,7 +243,7 @@ class Ui_TitleBarWidget(object):
         self.bookname_comboBox.setItemText(1, _translate("TitleBarWidget", "作者"))
         self.search_btn.setText(_translate("TitleBarWidget", "查"))
 
-import images_rc
+
 
 if __name__ == "__main__":
     import sys
