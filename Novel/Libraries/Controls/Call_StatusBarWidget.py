@@ -1,6 +1,8 @@
 import sys
 
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication,QWidget
+from PyQt5.QtGui import QColor
 from Libraries.Views.Ui_StatusBarWidget import Ui_StatusBarWidget
 
 
@@ -10,7 +12,14 @@ class Call_StatusBarWidget(QWidget,Ui_StatusBarWidget):
         super(Call_StatusBarWidget,self).__init__(*args,**kwargs)
         self.setupUi(self)
         self.initUI()
-    
+        
     def initUI(self):
-        self.setStyleSheet("background-color: rgb(192, 220, 239);")
+        #
+        self.setAttribute(Qt.WA_StyledBackground, True)
+        # 设置默认背景颜色,否则由于受到父窗口的影响导致透明
+        self.setAutoFillBackground(True)
+        palette = self.palette()
+        palette.setColor(palette.Window, QColor(187,216, 234))
+        self.setPalette(palette)
+        self.setStyleSheet("background-color: qlineargradient(spread:reflect, x1:0.00568182, y1:0.051, x2:0, y2:0.563, stop:0 rgba(188, 217, 235, 255), stop:1 rgba(255, 255, 255, 255));background-color: rgb(192, 220, 239);")
 

@@ -15,8 +15,6 @@ class Ui_TitleBarWidget(object):
         TitleBarWidget.resize(642, 70)
         TitleBarWidget.setMinimumSize(QtCore.QSize(0, 70))
         TitleBarWidget.setMaximumSize(QtCore.QSize(16777215, 70))
-        TitleBarWidget.setAutoFillBackground(True)
-        TitleBarWidget.setStyleSheet("")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(TitleBarWidget)
         self.horizontalLayout_2.setContentsMargins(-1, 0, 0, -1)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")

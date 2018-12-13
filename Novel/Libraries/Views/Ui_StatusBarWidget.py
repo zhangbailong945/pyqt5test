@@ -13,7 +13,7 @@ class Ui_StatusBarWidget(object):
         StatusBarWidget.setObjectName("StatusBarWidget")
         StatusBarWidget.resize(410, 30)
         StatusBarWidget.setMaximumSize(QtCore.QSize(16777215, 30))
-        StatusBarWidget.setAutoFillBackground(True)
+        #StatusBarWidget.setAutoFillBackground(True)
         #StatusBarWidget.setStyleSheet("background-color:red;")
         #StatusBarWidget.setStyleSheet("background-color: qlineargradient(spread:reflect, x1:0.00568182, y1:0.051, x2:0, y2:0.563, stop:0 rgba(188, 217, 235, 255), stop:1 rgba(255, 255, 255, 255));background-color: rgb(192, 220, 239);")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(StatusBarWidget)
