@@ -42,11 +42,15 @@ class Ui_StatusBarWidget(object):
     def retranslateUi(self, StatusBarWidget):
         _translate = QtCore.QCoreApplication.translate
         StatusBarWidget.setWindowTitle(_translate("StatusBarWidget", "Form"))
+        self.novelname_label.setOpenExternalLinks(True)
         self.novelname_label.setText(_translate("StatusBarWidget", "<html><head/><body><p><a href=\"http://www.zhangbailong.com/novel\" target=\"_blank\"><span style=\" text-decoration: underline; color:#0000ff;\">搜书神器</span></a></p></body></html>"))
         self.novelversion_label.setText(_translate("StatusBarWidget", "V1.0"))
+        self.checkupdate_label.setOpenExternalLinks(True)
         self.checkupdate_label.setText(_translate("StatusBarWidget", "<html><head/><body><p><a href=\"http://www.zhangbailong.com/novel/update\"><span style=\" text-decoration: underline; color:#0000ff;\">检查更新</span></a></p></body></html>"))
+        self.suggest_label.setOpenExternalLinks(True)
         self.suggest_label.setText(_translate("StatusBarWidget", "<html><head/><body><p><a href=\"http://www.zhangbailong.com/suggest\"><span style=\" text-decoration: underline; color:#0000ff;\">意见反馈</span></a></p></body></html>"))
-        self.other_label.setText(_translate("StatusBarWidget", "<html><head/><body><p>其他</p></body></html>"))
+        self.other_label.setOpenExternalLinks(True)
+        self.other_label.setText(_translate("StatusBarWidget", "<html><head/><body><p><a href=\"http://www.zhangbailong.com/suggest\"><span style=\" text-decoration: underline; color:#0000ff;\">其他</span></a></p></body></html>"))
 
 
 if __name__ == "__main__":

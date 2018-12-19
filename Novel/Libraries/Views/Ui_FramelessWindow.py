@@ -1,11 +1,13 @@
 import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication,QWidget,QVBoxLayout
-from PyQt5.QtGui import QPainter,QPen,QColor
+from PyQt5.QtGui import QPainter,QPen,QColor,QCursor
 #标题栏窗口
 from Libraries.Controls.Call_TitleBarWidget import Call_TitleBarWidget
 #状态栏窗口
 from Libraries.Controls.Call_StatusBarWidget import Call_StatusBarWidget
+#默认的QSS
+from Libraries.Qss.Default import Default
 
 class FramelessWindow(QWidget):
 
@@ -14,9 +16,6 @@ class FramelessWindow(QWidget):
 
     def __init__(self,*args,**kwargs):
         super(FramelessWindow,self).__init__(*args,**kwargs)
-        self._pressed=False
-        self.Direction=None
-        self._mPos=None
         #背景透明
         self.setAttribute(Qt.WA_TranslucentBackground,True)
         #无边框
@@ -36,8 +35,47 @@ class FramelessWindow(QWidget):
         self.contentWidget.setStyleSheet("background-color:white;")
         layout.addWidget(self.contentWidget)
         self.statusBar=Call_StatusBarWidget(self)
-        self.statusBar.setStyleSheet("background-color:white;")
         layout.addWidget(self.statusBar)
+
+        self.setStyleSheet(Default.DEFAULT_QSS)
+
+        #隐藏到任务栏，内置信号触发自定义函数
+        self.titleBar.min_btn.clicked.connect(self.showMinimized_Call)
+        #之定义信号触发内置函数
+        self.titleBar.windowMinimumed.connect(self.showMinimized)
+        #关闭按钮内置单击信号，触发自定义函数
+        self.titleBar.close_btn.clicked.connect(self.close_Call)
+        #自定义信号触发内置函数
+        self.titleBar.windowClosed.connect(self.close)
+
+        self.titleBar.max_btn.clicked.connect(self.showMaxed)
+        self.titleBar.windowMaximumed.connect(self.showMax)
+        self.titleBar.windowNormaled.connect(self.showNormal)
+    
+    def showMax(self):
+        self.showMaximized()
+        self.layout().setContentsMargins(0,0,0,0)
+    
+    def showNormal(self):
+        super(FramelessWindow, self).showNormal()
+        self.layout().setContentsMargins(self.Margins,self.Margins,self.Margins,self.Margins)
+    
+    def showMaxed(self):
+        if self.titleBar.max_btn.text()=='口':
+            #最大化
+            self.titleBar.max_btn.setText("回")
+            self.titleBar.windowMaximumed.emit()
+        else:
+            self.titleBar.max_btn.setText("口")
+            self.titleBar.windowNormaled.emit()
+    
+    #触发隐藏到任务栏信号
+    def showMinimized_Call(self):
+        #绑定事件
+        self.titleBar.windowMinimumed.emit()
+    #触发关闭app信号
+    def close_Call(self):
+        self.titleBar.windowClosed.emit()
     
     def paintEvent(self,event):
         super(FramelessWindow,self).paintEvent(event)
@@ -45,33 +83,24 @@ class FramelessWindow(QWidget):
         painter.setPen(QPen(QColor(255,255,255,1),2*self.Margins))
         painter.drawRect(self.rect())
 
+    #鼠标按下
     def mousePressEvent(self,event):
         super(FramelessWindow,self).mousePressEvent(event)
         if event.button()==Qt.LeftButton:
-            self._mPos=event.pos()
-    
+            self.m_drag=True
+            self.m_DragPosition=event.globalPos()-self.pos()
+            event.accept()
+            self.setCursor(QCursor(Qt.SizeAllCursor))
+    #鼠标释放
     def mouseReleaseEvent(self,event):
         super(FramelessWindow,self).mouseReleaseEvent(event)
-        self._pressed=False
-        self.Direction=None
-
+        self.m_drag=False
+        self.setCursor(QCursor(Qt.ArrowCursor))
+    
+    #鼠标移动
     def mouseMoveEvent(self,event):
         super(FramelessWindow,self).mouseMoveEvent(event)
-        pos=event.pos()
-        xPos,yPos=pos.x(),pos.y()
-        wm,hm=self.width()-self.Margins,self.height()-self.Margins
-
-        if event.buttons()==Qt.LeftButton and self._pressed:
-            self._resizeWidget(pos)
-            return
-    
-    def _resizeWidget(self,pos):
-        """调整窗口大小"""
-        if self.Direction == None:
-            return
-        mpos = pos - self._mpos
-        xPos, yPos = mpos.x(), mpos.y()
-        geometry = self.geometry()
-        x, y, w, h = geometry.x(), geometry.y(), geometry.width(), geometry.height()
-        self.setGeometry(x,y,w,h)
+        if event.buttons()==Qt.LeftButton and self.m_drag:
+            self.move(event.globalPos()-self.m_DragPosition)
+            event.accept()
 

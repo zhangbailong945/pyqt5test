@@ -234,7 +234,7 @@ class Ui_TitleBarWidget(object):
         self.history_btn.setText(_translate("TitleBarWidget", "阅读\n"
 "记录"))
         self.feedback_btn.setText(_translate("TitleBarWidget", "反馈"))
-        self.min_btn.setText(_translate("TitleBarWidget", "0"))
+        self.min_btn.setText(_translate("TitleBarWidget", "_"))
         self.max_btn.setText(_translate("TitleBarWidget", "口"))
         self.close_btn.setText(_translate("TitleBarWidget", "×"))
         self.bookname_comboBox.setItemText(0, _translate("TitleBarWidget", "书名"))
