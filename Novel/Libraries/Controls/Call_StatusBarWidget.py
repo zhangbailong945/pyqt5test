@@ -21,7 +21,7 @@ class Call_StatusBarWidget(QWidget,Ui_StatusBarWidget):
         palette = self.palette()
         palette.setColor(palette.Window, QColor(187,216, 234))
         self.setPalette(palette)
-        self.setStyleSheet("background-color: qlineargradient(spread:reflect, x1:0.00568182, y1:0.051, x2:0, y2:0.563, stop:0 rgba(188, 217, 235, 255), stop:1 rgba(255, 255, 255, 255));background-color: rgb(192, 220, 239);")
+        #self.setStyleSheet("background-color: qlineargradient(spread:reflect, x1:0.00568182, y1:0.051, x2:0, y2:0.563, stop:0 rgba(188, 217, 235, 255), stop:1 rgba(255, 255, 255, 255));background-color: rgb(192, 220, 239);")
 
 
     def enterEvent(self,event):

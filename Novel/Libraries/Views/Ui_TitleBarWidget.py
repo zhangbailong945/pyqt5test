@@ -45,23 +45,18 @@ class Ui_TitleBarWidget(object):
         self.online_btn = QtWidgets.QPushButton(TitleBarWidget)
         self.online_btn.setMinimumSize(QtCore.QSize(70, 0))
         self.online_btn.setMaximumSize(QtCore.QSize(70, 70))
-        self.online_btn.setStyleSheet("border:0px;\n"
-"")
         self.online_btn.setObjectName("online_btn")
         self.horizontalLayout_3.addWidget(self.online_btn)
         self.bookstack_btn = QtWidgets.QPushButton(TitleBarWidget)
         self.bookstack_btn.setMinimumSize(QtCore.QSize(70, 0))
         self.bookstack_btn.setMaximumSize(QtCore.QSize(70, 70))
-        self.bookstack_btn.setStyleSheet("border:0px;\n"
-"")
+
         self.bookstack_btn.setObjectName("bookstack_btn")
         self.horizontalLayout_3.addWidget(self.bookstack_btn)
         self.history_btn = QtWidgets.QPushButton(TitleBarWidget)
         self.history_btn.setMinimumSize(QtCore.QSize(70, 0))
         self.history_btn.setMaximumSize(QtCore.QSize(70, 70))
         self.history_btn.setAutoFillBackground(False)
-        self.history_btn.setStyleSheet("border:0px;\n"
-"")
         self.history_btn.setCheckable(False)
         self.history_btn.setObjectName("history_btn")
         self.horizontalLayout_3.addWidget(self.history_btn)

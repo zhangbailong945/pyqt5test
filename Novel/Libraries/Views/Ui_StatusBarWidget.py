@@ -43,14 +43,14 @@ class Ui_StatusBarWidget(object):
         _translate = QtCore.QCoreApplication.translate
         StatusBarWidget.setWindowTitle(_translate("StatusBarWidget", "Form"))
         self.novelname_label.setOpenExternalLinks(True)
-        self.novelname_label.setText(_translate("StatusBarWidget", "<html><head/><body><p><a href=\"http://www.zhangbailong.com/novel\" target=\"_blank\"><span style=\" text-decoration: underline; color:#0000ff;\">搜书神器</span></a></p></body></html>"))
+        self.novelname_label.setText(_translate("StatusBarWidget", "<html><head/><body><p><a href=\"http://www.zhangbailong.com/novel\" target=\"_blank\"><span style=\" text-decoration:none; color:#383838;\">搜书神器</span></a></p></body></html>"))
         self.novelversion_label.setText(_translate("StatusBarWidget", "V1.0"))
         self.checkupdate_label.setOpenExternalLinks(True)
-        self.checkupdate_label.setText(_translate("StatusBarWidget", "<html><head/><body><p><a href=\"http://www.zhangbailong.com/novel/update\"><span style=\" text-decoration: underline; color:#0000ff;\">检查更新</span></a></p></body></html>"))
+        self.checkupdate_label.setText(_translate("StatusBarWidget", "<html><head/><body><p><a href=\"http://www.zhangbailong.com/novel/update\"><span style=\" text-decoration: none; color:#0075BB;\">检查更新</span></a></p></body></html>"))
         self.suggest_label.setOpenExternalLinks(True)
-        self.suggest_label.setText(_translate("StatusBarWidget", "<html><head/><body><p><a href=\"http://www.zhangbailong.com/suggest\"><span style=\" text-decoration: underline; color:#0000ff;\">意见反馈</span></a></p></body></html>"))
+        self.suggest_label.setText(_translate("StatusBarWidget", "<html><head/><body><p><a href=\"http://www.zhangbailong.com/suggest\"><span style=\" text-decoration: none; color:#0075BB;\">意见反馈</span></a></p></body></html>"))
         self.other_label.setOpenExternalLinks(True)
-        self.other_label.setText(_translate("StatusBarWidget", "<html><head/><body><p><a href=\"http://www.zhangbailong.com/suggest\"><span style=\" text-decoration: underline; color:#0000ff;\">其他</span></a></p></body></html>"))
+        self.other_label.setText(_translate("StatusBarWidget", "<html><head/><body><p><a href=\"http://www.zhangbailong.com/suggest\"><span style=\" text-decoration: none; color:#0075BB;\">其他</span></a></p></body></html>"))
 
 
 if __name__ == "__main__":
