@@ -37,7 +37,7 @@ class Default(object):
 
 
 #online_btn:hover{
-    background:rgba(72,111,144,50%);
+    background:grba(72,111,144,40);
     border-top:none;
     border-bottom:none;
     border-left:1px solid #6EBDE6;
@@ -48,7 +48,7 @@ class Default(object):
 }
 
 #online_btn:checked{
-    background-color:transparent;
+    background:grba(72,111,144,150);
     border-top:none;
     border-bottom:none;
     border-left:1px solid #6EBDE6;
@@ -70,7 +70,7 @@ class Default(object):
 }
 
 #bookstack_btn:hover{
-    background:rgba(72,111,144,50%);
+    background:grba(72,111,144,40);
     border-top:none;
     border-bottom:none;
     border-left:1px solid #6EBDE6;
@@ -81,7 +81,7 @@ class Default(object):
 }
 
 #bookstack_btn:checked{
-    background-color:transparent;
+    background:grba(72,111,144,150);
     border-top:none;
     border-bottom:none;
     border-left:1px solid #6EBDE6;
@@ -101,6 +101,69 @@ class Default(object):
     font-size:14px;
     color:rgb(243,243,243);
 }
+
+#history_btn:hover{
+    background:grba(72,111,144,40);
+    border-top:none;
+    border-bottom:none;
+    border-left:1px solid #6EBDE6;
+    border-right:1px solid #6EBDE6;
+    font-weight:bold;
+    font-size:14px;
+    color:rgb(243,243,243);
+}
+
+#history_btn:checked{
+    background:grba(72,111,144,150);
+    border-top:none;
+    border-bottom:none;
+    border-left:1px solid #6EBDE6;
+    border-right:1px solid #6EBDE6;
+    font-weight:bold;
+    font-size:14px;
+    color:rgb(243,243,243);
+}
+
+#feedback_btn{
+    color:rgb(243,243,243);
+}
+
+#feedback_btn:hover{
+    background:grba(72,111,144,100);
+}
+
+#setting_toolButton{
+    color:rgb(243,243,243);
+}
+
+#setting_toolButton:hover{
+    background:grba(72,111,144,100);
+}
+
+#min_btn{
+    color:rgb(243,243,243);
+}
+
+#min_btn:hover{
+    background:grba(72,111,144,100);
+}
+
+#max_btn{
+    color:rgb(243,243,243);
+}
+
+#max_btn:hover{
+    background:grba(72,111,144,100);
+}
+
+#close_btn{
+    color:rgb(243,243,243);
+}
+
+#close_btn:hover{
+    background-color:rgb(209,88,77)
+}
+
 
 #StatusBarWidget{
     background-color:rgb(192,219,236);
