@@ -87,5 +87,13 @@ word.reverse()
 print(word)
 
 #sort()
-word.sort()
+word.sort(reverse=True)
 print(word)
+
+#clear()
+#word.clear()
+
+#copy()
+word3=word.copy()
+
+print(word3)
