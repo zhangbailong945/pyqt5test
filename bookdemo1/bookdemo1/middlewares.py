@@ -6,6 +6,42 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+from .settings import IP_POOLS
+
+import requests,random
+
+class ProxySpiderMiddleware(object):
+
+    def process_request(self,request,spider):
+        '''对request对象加上proxy'''
+
+        proxy=requests.get("http://123.207.35.36:5010/get/").content
+        proxy='http://'+proxy.decode()
+        print('this is request ip:'+proxy)
+
+        '''
+        thisip=random.choice(IP_POOLS)
+        print('连接%s'%thisip['address'])
+        request.meta['proxy']=thisip['address']
+        '''
+        request.meta['proxy']=proxy
+
+    
+    def process_response(self,request,response,spider):
+        '''对返回的response处理'''
+        #如果返回的response状态不是200,重新生成当前request对象
+        if response.status!=200:
+            proxy=requests.get("http://123.207.35.36:5010/get/").content
+            proxy='http://'+proxy.decode()
+            print('this is response ip:'+proxy)
+            '''
+            thisip=random.choice(IP_POOLS)
+            print('连接%s'%thisip['address'])
+            request.meta['proxy']=thisip['address']
+            '''
+            request.meta['proxy']=proxy
+            return request
+        return response
 
 
 class Bookdemo1SpiderMiddleware(object):

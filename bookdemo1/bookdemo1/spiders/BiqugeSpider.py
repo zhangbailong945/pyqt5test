@@ -18,7 +18,7 @@ class BiqugeSpider(scrapy.Spider):
             'Accept-Language':'zh-CN,zh;q=0.9',
 
         },
-        "RANDOM_DELAY":5,
+        "RANDOM_DELAY":2,
     }
 
     #提取分类列表链接
@@ -30,7 +30,7 @@ class BiqugeSpider(scrapy.Spider):
         links=le.extract_links(response)
         print(links[2].url)
         #for link in links[2:]:
-        yield scrapy.Request(links[2].url,callback=self.parse_category_book)
+        yield scrapy.Request(links[2].url,callback=self.parse_category_book,dont_filter=False)
 
     
     #提取分类页面好看的书的列表
@@ -38,7 +38,7 @@ class BiqugeSpider(scrapy.Spider):
         le=LinkExtractor(restrict_css='#newscontent>div.r>ul>li a[href]')
         links=le.extract_links(response)
         #for link in links:
-        yield scrapy.Request(links[0].url,callback=self.parse_category_book_details)
+        yield scrapy.Request(links[0].url,callback=self.parse_category_book_details,dont_filter=False)
 
     
     #提取分类中书的详情
@@ -58,7 +58,7 @@ class BiqugeSpider(scrapy.Spider):
         #print(links[9].text)
 
         for link in links[9:]:
-            request=scrapy.Request(link.url,callback=self.parse_book_chapter_content)
+            request=scrapy.Request(link.url,callback=self.parse_book_chapter_content,dont_filter=False)
             request.meta['novel_title']=novel_title
             request.meta['novel_chapter_name']=link.text
             yield request
@@ -72,7 +72,7 @@ class BiqugeSpider(scrapy.Spider):
         novel_title=response.meta['novel_title']
         novel_chapter_name=response.meta['novel_chapter_name']
         new_line='\r\r\n\n'
-        content=new_line+novel_chapter_name+content
+        content=new_line+novel_chapter_name+new_line+content
         with open(novel_title+'.txt','a+',encoding='utf-8') as f:
             f.write(content)
 
