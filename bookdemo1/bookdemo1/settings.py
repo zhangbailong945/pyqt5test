@@ -58,7 +58,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'bookdemo1.middlewares.ProxySpiderMiddleware': 750,
+    #'bookdemo1.middlewares.ProxySpiderMiddleware': 750,
     #'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware':751,
     #'bookdemo1.middlewares.Bookdemo1DownloaderMiddleware': 543,
 }
