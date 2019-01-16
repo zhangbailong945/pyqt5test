@@ -17,6 +17,9 @@ NEWSPIDER_MODULE = 'bookdemo1.spiders'
 MONGO_DB_URI='mongodb://localhost:27017/'
 MONGO_DB_NAME='bookdemo1'
 
+#sqlite3
+SQLITE3_DB_NAME='novels.db'
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'bookdemo1 (+http://www.yourdomain.com)'
@@ -58,7 +61,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    #'bookdemo1.middlewares.ProxySpiderMiddleware': 750,
+    'bookdemo1.middlewares.ProxySpiderMiddleware': 750,
     #'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware':751,
     #'bookdemo1.middlewares.Bookdemo1DownloaderMiddleware': 543,
 }
@@ -73,7 +76,8 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'bookdemo1.pipelines.Bookdemo1Pipeline': 300,
-    'bookdemo1.pipelines.MongoDBPipeline':350,
+    #'bookdemo1.pipelines.MongoDBPipeline':350,
+    'bookdemo1.pipelines.Sqlite3DBPipeline':400,
     
 }
 

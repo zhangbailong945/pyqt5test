@@ -18,3 +18,15 @@ class Bookdemo1Item(scrapy.Item):
     upc=scrapy.Field()
     stock=scrapy.Field()
 
+class Biquge_Books(scrapy.Item):
+    bname=scrapy.Field()
+    bauthor=scrapy.Field()
+    bdate=scrapy.Field()
+    bintroduction=scrapy.Field()
+
+
+class Biquge_Chapters(scrapy.Item):
+    bid=scrapy.Item()
+    chaname=scrapy.Item()
+    chalink=scrapy.Item()
+    chacontent=scrapy.Item()

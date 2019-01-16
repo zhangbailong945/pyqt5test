@@ -2,6 +2,7 @@
 import scrapy,os
 
 from scrapy.linkextractors import LinkExtractor
+from ..items import Biquge_Books
 
 
 class BiqugeSpider(scrapy.Spider):
@@ -44,24 +45,31 @@ class BiqugeSpider(scrapy.Spider):
     #提取分类中书的详情
     def parse_category_book_details(self,response):
         sel=response.css('div#maininfo')
+        books=Biquge_Books()
         novel_title=sel.css('#info>h1::text').extract_first()
+        books['bname']=novel_title
         #print(novel_title)
         novel_author=sel.css('#info>p:nth-child(2)').re_first('作.*?者：(\w+)')
+        books['bauthor']=novel_author
         #print(novel_author)
         novel_last_update_time=sel.css('#info>p:nth-child(4)').re_first('最后更新：(\d{4}-\d{2}-\d{2})')
+        books['bdate']=novel_last_update_time
         #print(novel_last_update_time)
         novel_last_update_content=response.css('#intro>p::text').extract_first()
+        books['bintroduction']=novel_last_update_content
         #print(novel_last_update_content)
         #小说的章节链接列表
         le=LinkExtractor(restrict_css='div.box_con>div#list>dl>dd>a[href]')
         links=le.extract_links(response)
+        yield books
         #print(links[9].text)
-
+        '''
         for link in links[9:]:
             request=scrapy.Request(link.url,callback=self.parse_book_chapter_content,dont_filter=False)
             request.meta['novel_title']=novel_title
             request.meta['novel_chapter_name']=link.text
             yield request
+            '''
 
     
     def parse_book_chapter_content(self,response):
