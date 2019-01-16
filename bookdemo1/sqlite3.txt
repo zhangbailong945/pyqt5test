@@ -1,0 +1,7 @@
+CREATE TABLE categorys (
+    cid     INTEGER      PRIMARY KEY AUTOINCREMENT,
+    cname   VARCHAR (30) NOT NULL,
+    cename  VARCHAR (30),
+    cdomain VARCHAR (50),
+    cstatus CHAR (1) 
+);
