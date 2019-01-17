@@ -2,7 +2,7 @@
 import scrapy,os
 
 from scrapy.linkextractors import LinkExtractor
-from ..items import Biquge_Books
+from ..items import Biquge_Books,Biquge_Chapters
 
 
 class BiqugeSpider(scrapy.Spider):
@@ -63,6 +63,11 @@ class BiqugeSpider(scrapy.Spider):
         links=le.extract_links(response)
         yield books
         #print(links[9].text)
+        chapters=Biquge_Chapters()
+        chapters['bname']=novel_title
+        chapters['bauthor']=novel_author
+        chapters['clinks']=links[9:]
+        yield chapters
         '''
         for link in links[9:]:
             request=scrapy.Request(link.url,callback=self.parse_book_chapter_content,dont_filter=False)
@@ -70,6 +75,7 @@ class BiqugeSpider(scrapy.Spider):
             request.meta['novel_chapter_name']=link.text
             yield request
             '''
+        
 
     
     def parse_book_chapter_content(self,response):

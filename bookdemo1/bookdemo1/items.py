@@ -26,7 +26,6 @@ class Biquge_Books(scrapy.Item):
 
 
 class Biquge_Chapters(scrapy.Item):
-    bid=scrapy.Item()
-    chaname=scrapy.Item()
-    chalink=scrapy.Item()
-    chacontent=scrapy.Item()
+    bname=scrapy.Field()
+    bauthor=scrapy.Field()
+    clinks=scrapy.Field()

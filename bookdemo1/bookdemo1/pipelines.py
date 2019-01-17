@@ -7,6 +7,7 @@
 
 import pymongo,sqlite3
 from scrapy.item import Item
+from .items import Biquge_Books,Biquge_Chapters
 
 class Bookdemo1Pipeline(object):
     def process_item(self, item, spider):
@@ -47,8 +48,15 @@ class Sqlite3DBPipeline(object):
         self.db_conn.close()
     
     def process_item(self,item,spider):
-        self.insert_books(item)
-        return item
+        if isinstance(item,Biquge_Books):
+            self.insert_books(item)
+            print('执行books')
+            return item
+        elif isinstance(item,Biquge_Chapters):
+            self.insert_chapters(item)
+            return item
+        else:
+            return item
     
     def insert_books(self,item):
         values=(
@@ -58,7 +66,25 @@ class Sqlite3DBPipeline(object):
             item['bintroduction'],
 
         )
+
+        query='select * from books where bname=? and bauthor=?'
+        rows=self.db_cursor.execute(query,(item['bname'],item['bauthor'])).fetchall()
+        if len(rows)<1:
+            sql='INSERT INTO books VALUES(null,?,?,?,?)'
+            self.db_cursor.execute(sql,values)
+            self.db_conn.commit()
     
-        sql='INSERT INTO books VALUES(null,?,?,?,?)'
-        self.db_cursor.execute(sql,values)
-        self.db_conn.commit()
+    def insert_chapters(self,item):
+        print('执行chapters')
+        query='select * from books where bname=? and bauthor=?'
+        row=self.db_cursor.execute(query,(item['bname'],item['bauthor'])).fetchone()
+        print('book的编号：%s'%(str(row[0])))
+        if row[0]>0:
+            values=[]
+            for link in item['clinks']:
+                value=(row[0],link.text,link.url,'')
+                values.append(value)
+            sql='INSERT INTO chapters VALUES(null,?,?,?,?)'
+
+            self.db_cursor.executemany(sql,values)
+            self.db_conn.commit()
