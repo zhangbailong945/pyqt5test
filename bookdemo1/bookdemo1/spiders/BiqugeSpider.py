@@ -25,13 +25,13 @@ class BiqugeSpider(scrapy.Spider):
     #提取分类列表链接
     def parse(self,response):
         title=response.css('title::text').extract_first()
-        print(title)
+        #print(title)
         #根据css提取分类列表
         le=LinkExtractor(restrict_css='div.nav ul li a[href]')
         links=le.extract_links(response)
-        print(links[2].url)
-        #for link in links[2:]:
-        yield scrapy.Request(links[2].url,callback=self.parse_category_book,dont_filter=False)
+        #print(links[2].url)
+        for link in links[2:]:
+            yield scrapy.Request(link.url,callback=self.parse_category_book,dont_filter=False)
 
     
     #提取分类页面好看的书的列表
