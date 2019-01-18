@@ -30,8 +30,8 @@ class BiqugeSpider(scrapy.Spider):
         le=LinkExtractor(restrict_css='div.nav ul li a[href]')
         links=le.extract_links(response)
         #print(links[2].url)
-        for link in links[2:]:
-            yield scrapy.Request(link.url,callback=self.parse_category_book,dont_filter=False)
+        #for link in links[2:]:
+        yield scrapy.Request(links[0].url,callback=self.parse_category_book,dont_filter=False)
 
     
     #提取分类页面好看的书的列表
