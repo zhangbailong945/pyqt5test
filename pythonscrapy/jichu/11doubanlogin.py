@@ -1,4 +1,4 @@
-import requests
+import requests,time
 from html.parser import HTMLParser
 
 
@@ -44,6 +44,35 @@ class DouBanClient(object):
         self.session.post(url,data=data,headers=headers)
         print(self.session.cookies.items())
     
+    def edit_info(self,username,info,flag):
+        url='https://www.douban.com/people/%s/'% username
+        print(url)
+        #访问用户的主页
+        r=self.session.get(url)
+        ck=_get_ck(r.content.decode('utf-8'))
+        a={
+            'ck':ck,
+            'signature':info
+        }
+
+        b={
+            'ck':ck,
+            'intro':info
+        }
+
+        data=a if flag=='edit_signature' else b
+        print(data)
+        headers={
+            'referer':url,
+            'host':'www.douban.com',
+            'X-Requested-With':'XMLHttpRequest',
+        }
+        #提交修改 请求url是
+        #https://www.douban.com/j/people/86206477/edit_signature
+        intro_url='https://www.douban.com/j/people/86206477/%s'%flag
+        r=self.session.post(intro_url,data=data,headers=headers)
+        print(r.content)
+    
 
     
 #这个函数解析登录验证码
@@ -74,6 +103,7 @@ def _get_ck(content):
 
         def __init__(self):
             HTMLParser.__init__(self)
+            self.ck=None
         
         def handle_starttag(self,tag,attrs):
             if tag=='input' and _attr(attrs,'type')=='hidden' and _attr(attrs,'name')=='ck':
@@ -98,3 +128,6 @@ def _attr(attrs,attrname):
 if __name__=='__main__':
     c=DouBanClient()
     c.login('15014927018','123long456')
+    c.edit_info('86206477','我是神','edit_signature')
+    time.sleep(5)
+    c.edit_info('86206477','我是神的简介','edit_intro')
