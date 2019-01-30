@@ -176,3 +176,4 @@ if __name__ == '__main__':
         tsList.append(1)
         sql = "INSERT INTO tang300(name,author,sentence,translation,status) values(?,?,?,?,?)"
         db.execute(sql, tsList)
+
