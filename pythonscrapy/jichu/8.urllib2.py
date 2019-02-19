@@ -38,6 +38,8 @@ class MyHTMLParser(HTMLParser):
             movie['actors']=_attr(attrs,'data-actors') #电影演员
             self.movies.append(movie)
             print('%(title)s|%(score)s |%(director)s| %(actors)s'% movie)
+
+
     
 def nowplaying_movies(url):
     headers = {
