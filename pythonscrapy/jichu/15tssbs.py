@@ -214,6 +214,6 @@ if __name__ == '__main__':
     sbDict=dict(zip(list1,categoryList))
     '''
     list1,list2,list3=start_content_request()
-    print(list1)
+    print(list3)
 
     
