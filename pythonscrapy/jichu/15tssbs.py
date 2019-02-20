@@ -4,7 +4,7 @@ import os
 
 from MySqlite3 import MySqlite3
 from html.parser import HTMLParser
-
+import time
 
 #爬取唐诗三百首
 #爬取目标地址：https://www.gushiwen.org/gushi/tangshi.aspx
@@ -138,7 +138,7 @@ class ParserContent(HTMLParser):
     
     def handle_data(self,data):
         if self.title_h1:
-            print('')
+            self.title=data
 
         if self.author_p and self.author_p_num==1:
             if data!='\n':
@@ -183,18 +183,16 @@ def start_request():
     return parser.categorys,parser.categorys_list
 
 
-def start_content_request():
-    url = 'https://so.gushiwen.org/shiwenv_45c396367f59.aspx'
+def start_content_request(url):
     response = requests.get(url, headers=headers1)
     htmlContent = response.content.decode('utf-8')
     parser = ParserContent()
     parser.feed(htmlContent)
-    return parser.author_list,parser.content_list,parser.content_detail_list
+    return parser.author_list,parser.content_list,parser.content_detail_list,parser.title
 
 
 
 if __name__ == '__main__':
-    '''
     list1,list2=start_request()
     #五言绝句
     wyjjList=list2[0:29]
@@ -212,8 +210,59 @@ if __name__ == '__main__':
     yfList=list2[276:320]
     categoryList=[wyjjList,qyjjList,wyysList,qyysList,wygsList,qygsList,yfList]
     sbDict=dict(zip(list1,categoryList))
+
+    #插入分类
+    path='D://pyprojects//myapi//db.sqlite3'
+    db=MySqlite3(path)
     '''
-    list1,list2,list3=start_content_request()
-    print(list3)
+    for li in list1:
+        sql="SELECT id,name FROM tsapi_category where 1=1 and name='{0}'"
+        #已经存在的分类
+        sql=sql.format(li)
+        #插入先查找数据库
+        dict1=db.execute(sql,result_dict=False)
+        if len(dict1)==0:
+            isList=[]
+            isList.append(li)
+            sql="INSERT INTO tsapi_category(name) values(?)"
+            db.execute(sql,isList)
+    '''
+    #print(wyjjList)
+    print(len(list2))
+    #爬取正文
+    for li in yfList:
+        time.sleep(3)
+        list1,list2,list3,title=start_content_request(li)
+        title=title
+        dynasty=list1[0]
+        author=list1[2]
+        body=''.join(list2)
+        translation=''.join(list3[2:])
+
+        category=7
+        contentList=[]
+        contentList.append(title)
+        contentList.append(author)
+        contentList.append(dynasty)
+        contentList.append(body)
+        contentList.append(translation)
+        contentList.append(category)
+        sql="SELECT title FROM tsapi_post where 1=1 and title='{0}' and author='{1}'"
+        #已经存在的分类
+        sql=sql.format(title,author)
+        #插入先查找数据库
+        dict1=db.execute(sql,result_dict=False)
+        if len(dict1)==0:
+            sql="INSERT INTO tsapi_post(title,author,dynasty,body,translation,category_id) values(?,?,?,?,?,?)"
+            db.execute(sql,contentList)
+        
+
+    
+    
+
+        
+
+
+
 
     

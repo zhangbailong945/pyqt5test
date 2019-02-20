@@ -165,6 +165,7 @@ if __name__ == '__main__':
     tangshi=parser_Content(list2[0])
     print(str(tangshi['ju']))
     '''
+    '''
     for li in list2:
         tangshi = parser_Content(li)
         db = MySqlite3(path)
@@ -176,4 +177,6 @@ if __name__ == '__main__':
         tsList.append(1)
         sql = "INSERT INTO tang300(name,author,sentence,translation,status) values(?,?,?,?,?)"
         db.execute(sql, tsList)
+    '''
+        
 
