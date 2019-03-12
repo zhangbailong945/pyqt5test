@@ -1,7 +1,17 @@
 from django.shortcuts import render,redirect
 from .forms import RegisterForm
+from django.conf import settings
+from django.http import JsonResponse
+from django.contrib.auth import get_user_model
+from django.core.exceptions import PermissionDenied
+
 
 # Create your views here.
+
+UserModel=get_user_model()
+
+def auth_premission_required(perm):
+
 
 def register(request):
 
