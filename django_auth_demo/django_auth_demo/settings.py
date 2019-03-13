@@ -27,8 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL='users.User'
-# Application definition
+
 
 LOGIN_REDIRECT_URL='/'
 LOGOUT_REDIRECT_URL='/'
@@ -41,7 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'xadmin',
+    'crispy_forms',
+    'reversion',
 ]
+
+AUTH_USER_MODEL='users.User'
+# Application definition
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

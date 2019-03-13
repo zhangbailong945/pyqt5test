@@ -18,10 +18,18 @@ from django.urls import include,re_path
 
 from users import views
 
+import xadmin
+xadmin.autodiscover()
+
+from xadmin.plugins import xversion
+xversion.register_models()
+
 
 urlpatterns = [
-    re_path(r'^admin/', admin.site.urls),
+    #re_path(r'^admin/', admin.site.urls),
+    re_path(r'^xadmin/',xadmin.site.urls),
     re_path(r'^users/',include('users.urls')),
     re_path(r'^users/',include('django.contrib.auth.urls')),
     re_path(r'^$',views.index,name='index'),
+    re_path(r'^users/test$',views.test,name='test'),
 ]
