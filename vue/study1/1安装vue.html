@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>安装vue</title>
+    <link rel="stylesheet" href="">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+{{ message }}
+</div>
+
+
+<div id="app-2">
+<span v-bind:title="message">
+    鼠标停留改变
+</span>
+</div>
+
+
+<div id="app-3">
+<p v-if="seen">现在可以看见</p>
+</div>
+
+<div id="app-4">
+<ol>
+    <li v-for="todo in todos">
+       {{todo.text}}
+    </li>
+</ol>
+</div>
+
+<div id="app-5">
+<p>{{ message }}</p>
+<button v-on:click="reverseMessage">逆转消息</button>
+</div>
+
+<div id="app-6">
+<p>{{ message }}</p>
+<input v-model="message" />
+</div>
+<div id='app-7'>
+<ol>
+    <todo-item
+        v-for="item in postList"
+        v-bind:todo="item"
+        v-bind:key="item.id"
+    >
+
+    </todo-item>
+</ol>
+</div>
+</body>
+<script type="text/javascript">
+    var app=new Vue({
+        el:'#app',
+        data:{
+            message:'hello vlue!',
+        }
+    })
+
+    var app2=new Vue({
+        el:'#app-2',
+        data:{
+            message:'页面加载与'+new Date().toLocaleString()
+        }
+    })
+
+    var app3=new Vue({
+        el:'#app-3',
+        data:{
+            seen:true,
+        }
+    })
+
+    var app4=new Vue({
+        el:'#app-4',
+        data:{
+            todos:[
+                {text:'栏目1'},
+                {text:'栏目2'},
+                {text:'栏目3'},
+            ]
+        }
+    })
+
+    var app5=new Vue({
+        el:'#app-5',
+        data:{
+            message:'hello vue.js',
+        },
+        methods:{
+            reverseMessage:function(){
+                this.message=this.message.split('').reverse().join('')
+            }
+        }
+    })
+
+    var app6=new Vue({
+        el:'#app-6',
+        data:{
+            message:'hello vlue',
+        }
+    })
+
+    Vue.component('todo-item',{
+        props:['todo'],
+        template:'<li>{{todo.text}}</li>',
+        
+    })
+
+    var app7=new Vue({
+        el:'#app-7',
+        data:{
+            postList:[
+                {id:0,text:'你好人生！'},
+                {id:1,text:'疯狂的外星人'},
+                {id:2,text:'流浪地球'},
+            ]
+        }
+    })
+  </script>
+</html>
