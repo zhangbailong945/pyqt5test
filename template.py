@@ -1,5 +1,6 @@
-from PyQt5.QtCore import QTimer,Qt,QDateTime
-from PyQt5.QtWidgets import QApplication,QWidget,QGridLayout,QListWidget,QLabel
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication,QWidget,QVBoxLayout,QHBoxLayout
+from PyQt5.QtGui import QFont,QFontDatabase
 import sys
 
 
