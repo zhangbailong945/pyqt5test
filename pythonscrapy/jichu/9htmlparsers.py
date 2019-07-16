@@ -5,6 +5,9 @@ from urllib.request import Request,urlopen
 
 class MyHTMLParser(HTMLParser):
 
+    
+        
+
     def __init__(self):
         HTMLParser.__init__(self)
         self.readingtitle=0
