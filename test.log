@@ -1,0 +1,15 @@
+19-55-07/18/19 21:55:55 root:ERROR:'d'
+Traceback (most recent call last):
+  File "f:\PyQtProjects\pyqt5test\logging\log1.py", line 38, in <module>
+    print(a['d'])
+KeyError: 'd'
+19-55-07/18/19 21:55:55 root:ERROR:'d'
+Traceback (most recent call last):
+  File "f:\PyQtProjects\pyqt5test\logging\log1.py", line 38, in <module>
+    print(a['d'])
+KeyError: 'd'
+19-55-07/18/19 21:55:55 root:DEBUG:'d'
+Traceback (most recent call last):
+  File "f:\PyQtProjects\pyqt5test\logging\log1.py", line 38, in <module>
+    print(a['d'])
+KeyError: 'd'
