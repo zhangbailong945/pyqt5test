@@ -1,0 +1,7 @@
+
+[2019-07-19 16:23:08] [Model] [ERROR] test3
+[2019-07-19 16:23:08] [View] [ERROR] test4
+[2019-07-19 16:25:07] [Model] [WARNING] 嘻嘻嘻
+[2019-07-19 16:25:07] [Model] [CRITICAL] 呃呃呃
+[2019-07-19 16:25:07] [Model] [ERROR] test3
+[2019-07-19 16:25:07] [View] [ERROR] test4
